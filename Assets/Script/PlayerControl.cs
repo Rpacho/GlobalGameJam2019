@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
     public Rigidbody2D theRB;
     public Animator ani;
     public Collider2D myCollider;
+    public CircleCollider2D interactCol;
 
     [SerializeField] public float moveSpeed = 3;
     [SerializeField] public int jumpSpeed = 5;
@@ -24,6 +25,7 @@ public class PlayerControl : MonoBehaviour
         theRB = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         myCollider = GetComponent<Collider2D>();
+        interactCol = GetComponent<CircleCollider2D>();
     }
 
     // Start is called before the first frame update
@@ -54,7 +56,11 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("Player not attach" + gameObject);
         }
         Debug.Log(stamina);
-       
+        if (!myCollider.IsTouchingLayers(LayerMask.GetMask("interact")))
+        {
+            stamina = 100;
+        }
+
 
 
     }
