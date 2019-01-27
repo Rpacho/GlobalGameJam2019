@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
     // Player RigidBody
     public Rigidbody2D theRB;
     public Animator ani;
+    public Collider2D myCollider;
 
     [SerializeField] public int moveSpeed = 3;
     [SerializeField] public int jumpSpeed = 5;
@@ -21,6 +22,7 @@ public class PlayerControl : MonoBehaviour
     {
         theRB = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
+        myCollider = GetComponent<Collider2D>();
     }
 
     // Start is called before the first frame update
@@ -62,14 +64,18 @@ public class PlayerControl : MonoBehaviour
 
     public void jump()
     {
-
+        if (!myCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            return;
+        }
 
         if (Input.GetButtonDown("Jump"))
         { 
             Vector2 jumpVelocity = new Vector2(0, jumpSpeed);
             theRB.velocity += jumpVelocity;
         }
-
+        //bool playerVerticalSpeed = Mathf.Abs(theRB.velocity.y) > Mathf.Epsilon;
+        //ani.SetBool("Jumping", playerVerticalSpeed);
     }
 
     public void flip()
