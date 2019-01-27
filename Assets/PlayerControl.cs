@@ -12,11 +12,11 @@ public class PlayerControl : MonoBehaviour
     public Animator ani;
     public Collider2D myCollider;
 
-    [SerializeField] public int moveSpeed = 3;
+    [SerializeField] public float moveSpeed = 3;
     [SerializeField] public int jumpSpeed = 5;
+    public float speedMulti;
+    public float speed = 3f;
 
-    // State
-    //bool isItAlive = true;
 
     public void Awake()
     {
@@ -28,13 +28,13 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        moveSpeed = Input.GetKey(KeyCode.LeftShift) ? speed * speedMulti : speed;
         if (theRB != null)
         {
             run();
@@ -45,8 +45,8 @@ public class PlayerControl : MonoBehaviour
         {
             Debug.Log("Player not attach" + gameObject);
         }
-        Debug.Log(theRB.velocity);
-       
+        Debug.Log(moveSpeed);
+
 
     }
 
@@ -55,7 +55,7 @@ public class PlayerControl : MonoBehaviour
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
 
-        Vector2 playerVelocity = new Vector2(inputX*moveSpeed, theRB.velocity.y);
+        Vector2 playerVelocity = new Vector2(inputX * moveSpeed, theRB.velocity.y);
         theRB.velocity = playerVelocity;
         bool playerHorizontalSpeed = Mathf.Abs(theRB.velocity.x) > Mathf.Epsilon;
         ani.SetBool("Running", playerHorizontalSpeed);
@@ -70,7 +70,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         if (Input.GetButtonDown("Jump"))
-        { 
+        {
             Vector2 jumpVelocity = new Vector2(0, jumpSpeed);
             theRB.velocity += jumpVelocity;
         }
@@ -83,7 +83,7 @@ public class PlayerControl : MonoBehaviour
         bool playerHorizontalSpeed = Mathf.Abs(theRB.velocity.x) > Mathf.Epsilon;
         if (playerHorizontalSpeed)
         {
-            transform.localScale = new Vector2 (Mathf.Sign(theRB.velocity.x), 1f);
+            transform.localScale = new Vector2(Mathf.Sign(theRB.velocity.x), 1f);
         }
     }
 }
