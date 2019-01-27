@@ -113,7 +113,8 @@
     <Compile Include="Assets\ImportAsset\Cinemachine\Timeline\CinemachineMixer.cs" />
     <Compile Include="Assets\ImportAsset\Cinemachine\Timeline\CinemachineShot.cs" />
     <Compile Include="Assets\ImportAsset\Cinemachine\Timeline\CinemachineTrack.cs" />
-    <Compile Include="Assets\PlayerControl.cs" />
+    <Compile Include="Assets\Script\PlayerControl.cs" />
+    <Compile Include="Assets\Script\SceneLoader.cs" />
     <None Include="Assets\ImportAsset\Cinemachine\ReleaseNotes.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/techky/GameJam/GGJ2019/GameJam2019/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
