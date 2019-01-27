@@ -3,16 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class SceneLoader : MonoBehaviour
 {
-    public void LoadNextScene()
+    public string nextScene;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex + 1);
+        DontDestroyOnLoad(gameObject);
     }
-    public void LoadStartScene()
+
+    // Update is called once per frame
+    void Update()
     {
-        //int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(0);
+        
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            SceneManager.LoadScene(nextScene);
+        }
+    }
+
 }

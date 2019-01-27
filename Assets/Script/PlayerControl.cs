@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerControl : MonoBehaviour
 {
@@ -18,6 +17,7 @@ public class PlayerControl : MonoBehaviour
     public float speed = 3f;
     [SerializeField] public int stamina;
     private float time;
+
 
     public void Awake()
     {
@@ -54,9 +54,11 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("Player not attach" + gameObject);
         }
         Debug.Log(stamina);
+       
 
 
     }
+
 
     public void run()
     {
