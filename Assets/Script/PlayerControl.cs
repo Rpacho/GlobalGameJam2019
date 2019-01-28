@@ -16,7 +16,6 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] public int jumpSpeed = 5;
     public float speedMulti;
     public float speed = 3f;
-    [SerializeField] public int stamina;
     private float time;
 
 
@@ -31,17 +30,17 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stamina = 200;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && stamina > 0) 
+        if (Input.GetKey(KeyCode.LeftShift) && FindObjectOfType<GameDataS>().getStamina() > 0) 
         {
             moveSpeed = speed * speedMulti;
-            stamina -= 1;
-        }else
+            FindObjectOfType<GameDataS>().setStamina();
+        }
+        else
         {
             moveSpeed = speed;
         }
@@ -55,11 +54,11 @@ public class PlayerControl : MonoBehaviour
         {
             Debug.Log("Player not attach" + gameObject);
         }
-        Debug.Log(stamina);
+        /*Debug.Log(stamina);
         if (!myCollider.IsTouchingLayers(LayerMask.GetMask("interact")))
         {
-            stamina = 100;
-        }
+            stamina += 200;
+        }*/
 
 
 
@@ -89,6 +88,8 @@ public class PlayerControl : MonoBehaviour
         {
             Vector2 jumpVelocity = new Vector2(0, jumpSpeed);
             theRB.velocity += jumpVelocity;
+            //debugging
+            //FindObjectOfType<GameDataS>().playerGameOver();
         }
         //bool playerVerticalSpeed = Mathf.Abs(theRB.velocity.y) > Mathf.Epsilon;
         //ani.SetBool("Jumping", playerVerticalSpeed);

@@ -114,6 +114,7 @@
     <Compile Include="Assets\ImportAsset\Cinemachine\Timeline\CinemachineShot.cs" />
     <Compile Include="Assets\ImportAsset\Cinemachine\Timeline\CinemachineTrack.cs" />
     <Compile Include="Assets\Script\Food.cs" />
+    <Compile Include="Assets\Script\GameDataS.cs" />
     <Compile Include="Assets\Script\PlayerControl.cs" />
     <Compile Include="Assets\Script\SceneLoader.cs" />
     <Compile Include="Assets\Script\StartLoader.cs" />
